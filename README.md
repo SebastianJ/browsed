@@ -1,6 +1,6 @@
 # Browsed
 
-Browsed is a lightweight Capybara/PhantomJS/Selenium framework with tools and utilities for randomizing user agents, resolutions etc.
+Browsed is a wrapper around Capybara/Selenium with tools for proxy management and utilities for randomizing user agents, resolutions etc.
 
 ## Installation
 
@@ -21,30 +21,25 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-# driver can be :poltergeist (PhantomJS) or :selenium/:selenium_chrome/:selenium_chrome_headless (Firefox/Chrome)
-# browser can be: :phantomjs, :chrome, :chrome_headless, :firefox, :firefox_headless
+# browser can be: :chrome, :firefox or :phantomjs (PhantomJS might be deprecated eventually though)
 # device can be :desktop, :phone (iphone/android), :tablet (ipad/android), :iphone, :ipad, :android_phone, :android_tablet
-client    =   Browsed::Client.new(driver: :selenium_chrome, browser: :chrome, device: :desktop)
+client    =   Browsed::Client.new(browser: :chrome, headless: false, device: :desktop)
+client.session.visit "https://www.google.com"
 ```
 
-If you want to use proxies (note that proxy authentication is only possible using Poltergeist/PhantomJS):
+Proxy auth support is supported using two different methods:
+
+1) For non-headless Google Chrome a plugin will be generated on the fly and used by Chrome to auto-fill username/password for the proxy. Major downside with this approach is that Chrome can't be run in headless mode.
+
+2) Using the NodeJS library proxy-chain. Browsed will spawn a Node sub-process that will run a local proxy server that forwards all packets to the final proxy server. When the client is finished (by issuing client.quit!) the proxy-chain server will also be terminated. Major downside: depends on Node being installed.
+
+Here's an example using a proxy via proxy-chain:
 
 ```ruby
-proxy     =   {host: "127.0.0.1", port: 8080, username: "foo", password: "bar"}
-client    =   Browsed::Client.new(driver: :poltergeist, browser: :phantomjs, device: :desktop, proxy: proxy)
+proxy     =   {host: "127.0.0.1", port: 8080, username: "foo", password: "bar", mode: :proxy_chain}
+client    =   Browsed::Client.new(browser: :chrome, headless: false, device: :desktop, proxy: proxy)
+client.session.visit "https://www.google.com"
 ```
-
-Use the session property to interact with the underlying Capybara::Session object:
-
-```ruby
-client.session.visit("https://www.google.com")
-```
-
-## Support
-
-Proxy authentication is currently only supported by PhantomJS and Chrome not running in headless mode.
-
-Chrome proxy authentication support is somewhat of a hack and works by dynamically generating a plugin on the fly and then starting Chrome with that plugin. Unfortunately this doesn't work in headless Chrome.
 
 ## Development
 
