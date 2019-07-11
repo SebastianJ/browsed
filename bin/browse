@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "browsed"
+require "launchy"
+require "yaml"
+
+url         =   "https://whatismyipaddress.com"
+screenshot  =   File.expand_path("../../files/#{Time.now.to_i}.png", __FILE__)
+
+path        =   File.join(File.dirname(__FILE__), "../proxies.yml")
+proxy       =   ::File.exists?(path) ? YAML.load_file(path).symbolize_keys : nil
+
+client      =   Browsed::Client.new(
+  browser: :chrome,
+  headless: true,
+  device: :desktop,
+  environment: :development,
+  user_agent: :randomize,
+  resolution: [1920,1080],
+  options: {open_timeout: 30, read_timeout: 30},
+  proxy: proxy
+)
+
+client.resize! # Set resolution
+client.session.visit(url)
+client.session.save_screenshot(screenshot)
+client.display_screenshot!(screenshot)
+client.quit!
