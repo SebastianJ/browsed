@@ -16,14 +16,14 @@ module Browsed
         self.command        =   "ps aux | awk '/--browser_id=#{browser_id}/'"
       else
         case browser
-          when :phantomjs
-            self.command    =   "ps -ef | grep /[p]hantomjs"
-          when :firefox
-            self.command    =   "ps -ef | grep /[f]irefox-bin"
           when :chrome
             self.command    =   "ps -ef | grep /[c]hromedriver"
-          else
+          when :firefox
+            self.command    =   "ps -ef | grep /[f]irefox-bin"
+          when :phantomjs
             self.command    =   "ps -ef | grep /[p]hantomjs"
+          else
+            self.command    =   "ps -ef | grep /[c]hromedriver"
         end
       end
     end
