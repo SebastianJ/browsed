@@ -1,4 +1,4 @@
-module Browser
+module Browsed
   module Proxies
     module Chrome
       module ProxyAuthentication
