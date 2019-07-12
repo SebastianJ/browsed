@@ -10,10 +10,10 @@ module Browser
             FileUtils.mkdir_p plugin_path
             
             manifest_file   =   "#{plugin_path}/manifest.json"
-            File.open(manifest_file, 'w') { |file| file.write(::Browser::Proxies::Chrome::ProxyAuthentication::MANIFEST_JSON_TEMPLATE) }
+            File.open(manifest_file, 'w') { |file| file.write(::Browsed::Proxies::Chrome::ProxyAuthentication::MANIFEST_JSON_TEMPLATE) }
             
             script_file     =   "#{plugin_path}/background.js"
-            script_result   =   Browser::Proxies::Chrome::ProxyAuthentication::BACKGROUND_SCRIPT_TEMPLATE % [proxy[:host], proxy[:port], proxy[:username], proxy[:password]]
+            script_result   =   Browsed::Proxies::Chrome::ProxyAuthentication::BACKGROUND_SCRIPT_TEMPLATE % [proxy[:host], proxy[:port], proxy[:username], proxy[:password]]
             File.open(script_file, 'w') { |file| file.write(script_result) }
             
             return plugin_path

@@ -51,7 +51,7 @@ module Browsed
           
             if !headless? && proxy_using_auth?
               log("Generating a new proxy plugin to manage proxy authentication.")
-              plugin_path             =   Browser::Proxies::Chrome::ProxyAuthentication::Packager.package_extension(proxy, self.configuration.temp_path)
+              plugin_path             =   Browsed::Proxies::Chrome::ProxyAuthentication::Packager.package_extension(proxy, self.configuration.temp_path)
             end
           end
         end
