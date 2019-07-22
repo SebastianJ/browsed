@@ -10,11 +10,14 @@ module Browsed
         self.generated_proxy_url  =   nil
       end
     
-      def start_server(proxy_url)
+      def start_server(proxy_url, wait: 3)
         IO.popen("((node #{self.script_path} \"#{proxy_url}\" proxy-chain-instance-id-#{instance_id} &)&)") do |io|
           self.generated_proxy_url   =   io.gets&.strip
         end
-      
+        
+        # Wait a couple of seconds to let proxy-chain initiate the connection with the target proxy server
+        sleep wait
+        
         identify_pid
       
         self.generated_proxy_url
