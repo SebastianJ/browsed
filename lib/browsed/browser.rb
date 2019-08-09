@@ -9,8 +9,8 @@ module Browsed
     def resize!(res = nil)
       res ||= self.resolution
       
-      if res && res.size.eql?(2) && resizable_browser? # Resolutions for Chrome & Poltergeist are set in the driver
-        self.session.current_window.resize_to(res.first, res.last) # [width, height]
+      if self.session && res && res.size.eql?(2) && resizable_browser? # Resolutions for Chrome & Poltergeist are set in the driver
+        self.session&.current_window&.resize_to(res.first, res.last) # [width, height]
       end
     end
     

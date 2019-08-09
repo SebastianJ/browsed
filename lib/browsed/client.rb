@@ -91,11 +91,12 @@ module Browsed
     end
     
     def reset_session!
-      self.session.reset_session!
+      self.session.reset_session! rescue nil
     end
   
     def quit!(retries: 3)
       begin
+        reset_session!
         self.session.driver.quit
       rescue Exception
         retries       -=    1
