@@ -30,8 +30,15 @@ module Browsed
         self.pid                  =   !pid.to_s.empty? ? pid.to_i : nil
       end
     
-      def stop_server
-        Process.kill("INT", self.pid) unless self.pid.to_s.empty?
+      def stop_server(retries: 3)
+        begin
+          Process.kill("INT", self.pid) unless self.pid.to_s.empty?
+        
+        rescue Errno::ESRCH => e
+          identify_pid
+          retries         -= 1
+          retry if retries > 0
+        end
       end
     
     end
