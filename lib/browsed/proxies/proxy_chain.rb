@@ -25,7 +25,7 @@ module Browsed
     
       def identify_pid
         process                   =   `#{self.command}`.split("\n")&.select { |p| p =~ /proxy-chain-instance-id-#{self.instance_id}$/i }&.first
-        parts                     =   process.split(' ')
+        parts                     =   process&.split(' ')
         pid                       =   parts && parts.any? ? parts[1] : nil
         self.pid                  =   !pid.to_s.empty? ? pid.to_i : nil
       end
