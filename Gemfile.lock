@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    browsed (0.3.1)
+    browsed (0.3.2)
       agents (>= 0.1.4)
       capybara (>= 2.18)
       poltergeist (>= 1.18)
