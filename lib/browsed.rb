@@ -16,7 +16,6 @@ require "browsed/configuration"
 require "browsed/manager"
 
 require "browsed/proxies/chrome/proxy_authentication"
-require "browsed/proxies/proxy_chain"
 
 require "browsed/proxies"
 require "browsed/browser"
