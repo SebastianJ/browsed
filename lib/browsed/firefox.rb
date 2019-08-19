@@ -44,9 +44,9 @@ module Browsed
         if valid_proxy?
           if self.proxy.fetch(:mode, nil).eql?(:proxy_chain) && proxy_using_auth?
             log("Starting a new proxy chain server instance.")
-            self.proxy_chain_server   =   Browsed::Proxies::ProxyChain.new(self.browser_id)
+            self.proxy_chain_server   =   ::ProxyChainRb::Server.new(self.browser_id)
             
-            generated_proxy_url       =   self.proxy_chain_server.start_server(generate_proxy_auth_url)
+            generated_proxy_url       =   self.proxy_chain_server.start(generate_proxy_auth_url)
             
             log("Started a new proxy chain server instance at #{generated_proxy_url}.")
             

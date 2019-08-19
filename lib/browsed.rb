@@ -5,6 +5,7 @@ require "capybara/dsl"
 require "capybara/poltergeist"
 
 require "agents"
+require "proxy_chain_rb"
 
 require "browsed/version"
 

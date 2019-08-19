@@ -108,7 +108,7 @@ module Browsed
       self.manager.kill_processes!
       
       if self.proxy_chain_server
-        self.proxy_chain_server.stop_server
+        self.proxy_chain_server.stop
         self.proxy_chain_server   =   nil
       end
       
