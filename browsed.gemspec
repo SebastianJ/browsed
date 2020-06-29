@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   
-  spec.add_dependency "capybara", '>= 3.15.1'
+  spec.add_dependency "capybara", '>= 2.18'
   spec.add_dependency "poltergeist", '>= 1.18'
   spec.add_dependency "selenium-webdriver", '>= 3.142.7'
   spec.add_dependency "agents", '>= 0.1.4'
