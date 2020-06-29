@@ -3,10 +3,10 @@ PATH
   specs:
     browsed (0.3.4)
       agents (>= 0.1.4)
-      capybara (>= 2.18)
+      capybara (>= 3.33)
       poltergeist (>= 1.18)
-      proxy_chain_rb (~> 0.1.0)
-      selenium-webdriver (>= 3.14)
+      proxy_chain_rb (>= 0.1.2)
+      selenium-webdriver (>= 3.142.7)
 
 GEM
   remote: https://rubygems.org/

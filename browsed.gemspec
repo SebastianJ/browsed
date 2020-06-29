@@ -23,12 +23,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   
-  spec.add_dependency "capybara", '>= 2.18'
+  spec.add_dependency "capybara", '>= 3.33'
   spec.add_dependency "poltergeist", '>= 1.18'
-  spec.add_dependency "selenium-webdriver", '>= 3.14'
-  
+  spec.add_dependency "selenium-webdriver", '>= 3.142.7'
   spec.add_dependency "agents", '>= 0.1.4'
-  spec.add_dependency "proxy_chain_rb", "~> 0.1.0"
+  spec.add_dependency "proxy_chain_rb", ">= 0.1.2"
 
   spec.add_development_dependency "rake", "~> 12.3.2"
   spec.add_development_dependency "rspec", "~> 3.8.0"
