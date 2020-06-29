@@ -62,7 +62,7 @@ module Browsed
       self.browser      =   (browser || self.configuration.browser)&.to_sym
       self.browser_id   =   generate_browser_id
       
-      raise ::Browsed::Errors::InvalidBrowserError unless ::Browsed::Constants::BROWSERS.include?(self.browser)
+      raise ::Browsed::InvalidBrowserError unless ::Browsed::Constants::BROWSERS.include?(self.browser)
     end
     
     def setup_capybara(options: {}, retries: 3)
