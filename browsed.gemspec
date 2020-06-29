@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   
   spec.add_dependency "capybara", '>= 2.18'
   spec.add_dependency "poltergeist", '>= 1.18'
-  spec.add_dependency "selenium-webdriver", '>= 3.142.7'
+  spec.add_dependency "selenium-webdriver", '>= 3.9'
   spec.add_dependency "agents", '>= 0.1.4'
   spec.add_dependency "proxy_chain_rb", ">= 0.1.2"
 
